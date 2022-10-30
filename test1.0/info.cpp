@@ -8,49 +8,49 @@ typedef map<string, string> MyMap;
 typedef MyMap::iterator Iter;
 
 int main() {
-	MyMap m;
+	MyMap s;
 
-	ifstream amount("File.txt");
+	ifstream file("File.txt");
 	string line;
-	int n = 0;
-	while (getline(amount, line)) { n++; }
+	int e = 0;
+	while (getline(file, line)) { e++; }
 
-	string* mas = new string[n]; int i = 0;
+	string* al = new string[e]; int i = 0;
 	ifstream dict("File.txt");
 	do {
 		string str;
 		getline(dict, str);
 		cout << str << endl;
-		m.insert(MyMap::value_type(str, str));
-		mas[i] = str; i++;
+		s.insert(MyMap::value_type(str, str));
+		al[i] = str; i++;
 	} while (!dict.eof());
 	cout << endl;
 
-	int counter = 0, copier = 1, a = 1;
+	int count = 0, count = 1, a = 1;
 	for (int k = 0; k < i; k++) {
 		for (int j = 0; j < i; j++) {
-			if (mas[k] == mas[j]) {
-				counter++;
+			if (al[k] == al[j]) {
+				count++;
 			}
-			if (counter > a && mas[k] == mas[j]) {
-				copier++;
+			if (count > a && al[k] == al[j]) {
+				count++;
 				a++;
 			}
-			if (j == i - 1 && counter > 1) {
+			if (j == i - 1 && count > 1) {
 				ofstream out("File.txt", ios::app);
-				cout << mas[k] << " = " << copier << " copy" << endl;
+				cout << al[k] << " = " << count << " copy" << endl;
 				out << "\n";
-				out << mas[k] << " = " << copier << " copy" << endl;
+				out << al[k] << " = " << count << " copy" << endl;
 				out.close();
 			}
 		}
 		a = 0;
-		copier = 0;
-		counter = 0;
+		count = 0;
+		count = 0;
 	}
 	cout << endl;
 
-	for (Iter it = m.begin(); it != m.end(); it++) {
+	for (Iter it = s.begin(); it != s.end(); it++) {
 		cout << it->first << " - " << it->second << endl;
 	}
 }
